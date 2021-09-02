@@ -137,10 +137,11 @@ public class GuiResultados extends JInternalFrame implements InternalFrameListen
 		//tnExportarResultados.setIcon(new ImageIcon(GuiResultados.class.getResource("/imagenes/sobresalir.png")));
 
 		btnExportarResultados.addActionListener(this);
-		btnExportarResultados.setBounds(1576, 791, 39, 46);
+		btnExportarResultados.setBounds(1576, 791, 50, 50);
 		
-		btnExportarResultados.setIcon(setIcono("/imagenes/file-excel-solid.png", btnExportarResultados));
-		btnExportarResultados.setPressedIcon(setIconoPulsado("/imagenes/file-excel-solid.png", btnExportarResultados,6,6));
+		btnExportarResultados.setIcon(setIcono("/imagenes/descargar_peq_azul.jpg", btnExportarResultados));
+		btnExportarResultados.setRolloverIcon(setIcono("/imagenes/descargar_peq_azul_osc.jpg", btnExportarResultados));
+		btnExportarResultados.setPressedIcon(setIconoPulsado("/imagenes/descargar_peq_azul_osc.jpg", btnExportarResultados,2,2));
 		
 		getContentPane().add(btnExportarResultados);
 		

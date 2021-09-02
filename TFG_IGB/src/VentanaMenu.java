@@ -1,5 +1,6 @@
 
 import java.awt.EventQueue;
+import java.awt.Image;
 import java.awt.Toolkit;
 
 import javax.swing.JFrame;
@@ -27,6 +28,9 @@ import java.util.List;
 import java.awt.event.ActionEvent;
 import javax.swing.JButton;
 import javax.swing.JProgressBar;
+import javax.swing.ImageIcon;
+import javax.swing.SwingConstants;
+import java.awt.Window.Type;
 
 public class VentanaMenu extends JFrame implements ActionListener {
 
@@ -77,6 +81,7 @@ public class VentanaMenu extends JFrame implements ActionListener {
 	 * Create the frame.
 	 */
 	public VentanaMenu() {
+		setTitle("TFG Iván García Bajo");
 		
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -92,29 +97,73 @@ public class VentanaMenu extends JFrame implements ActionListener {
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
 		
-		btnCargarOrigenDatos = new JButton("Origen Datos");
+		
+		btnCargarOrigenDatos = new JButton();
 		btnCargarOrigenDatos.addActionListener(this);
+
+		btnCargarOrigenDatos.setBounds(btnCargarOrigenDatos.getX(), btnCargarOrigenDatos.getY(), 50, 50);
+		
+		btnCargarOrigenDatos.setIcon(setIcono("/imagenes/bbdd_peq_azul.png", btnCargarOrigenDatos));
+		btnCargarOrigenDatos.setRolloverIcon(setIcono("/imagenes/bbdd_peq_azul_osc.png", btnCargarOrigenDatos));
+		btnCargarOrigenDatos.setPressedIcon(setIconoPulsado("/imagenes/bbdd_peq_azul_osc.png", btnCargarOrigenDatos,2,2));
+		
+		
+		
 		menuBar.add(btnCargarOrigenDatos);
 		
-		btnSeleccion = new JButton("Seleccion Datos");
+
+		
+		btnSeleccion = new JButton();
 		btnSeleccion.addActionListener(this);
+
+		btnSeleccion.setBounds(btnSeleccion.getX(), btnSeleccion.getY(), 50, 50);
+		
+		btnSeleccion.setIcon(setIcono("/imagenes/select_peq_azul.png", btnSeleccion));
+		btnSeleccion.setRolloverIcon(setIcono("/imagenes/select_peq_azul_osc.png", btnSeleccion));
+		btnSeleccion.setPressedIcon(setIconoPulsado("/imagenes/select_peq_azul_osc.png", btnSeleccion,2,2));
+		
+		
 		menuBar.add(btnSeleccion);
 		
 
 		
-		btnPlay = new JButton("Play");
+		btnPlay = new JButton();
 		btnPlay.addActionListener(this);
+
+		btnPlay.setBounds(btnPlay.getX(), btnPlay.getY(), 50, 50);
+		
+		btnPlay.setIcon(setIcono("/imagenes/Play_peq_azul.png", btnPlay));
+		btnPlay.setRolloverIcon(setIcono("/imagenes/Play_peq_azul_osc.png", btnPlay));
+		btnPlay.setPressedIcon(setIconoPulsado("/imagenes/Play_peq_azul_osc.png", btnPlay,2,2));
+		
 		menuBar.add(btnPlay);
 		
 		progressBar = new JProgressBar(0, 100);
 		menuBar.add(progressBar);
 
-		btnResultados = new JButton("Resultados");
+		btnResultados = new JButton();
 		btnResultados.addActionListener(this);
+
+		btnResultados.setBounds(btnResultados.getX(), btnResultados.getY(), 50, 50);
+		
+		btnResultados.setIcon(setIcono("/imagenes/estadistica_peq_azul.jpg", btnResultados));
+		btnResultados.setRolloverIcon(setIcono("/imagenes/estadistica_peq_azul_osc.jpg", btnResultados));
+		btnResultados.setPressedIcon(setIconoPulsado("/imagenes/estadistica_peq_azul_osc.jpg", btnResultados,2,2));
+		
+		
 		menuBar.add(btnResultados);
 		
-		btnAnalizar = new JButton("Analizar");
+		
+		btnAnalizar = new JButton();
 		btnAnalizar.addActionListener(this);
+
+		btnAnalizar.setBounds(btnAnalizar.getX(), btnAnalizar.getY(), 50, 50);
+		
+		btnAnalizar.setIcon(setIcono("/imagenes/exponer_peq_azul.jpg", btnAnalizar));
+		btnAnalizar.setRolloverIcon(setIcono("/imagenes/exponer_peq_azul_osc.jpg", btnAnalizar));
+		btnAnalizar.setPressedIcon(setIconoPulsado("/imagenes/exponer_peq_azul_osc.jpg", btnAnalizar,2,2));
+		
+		
 		menuBar.add(btnAnalizar);
 		
 		contentPane = new JPanel();
@@ -293,7 +342,29 @@ public class VentanaMenu extends JFrame implements ActionListener {
 			}
 			
 		}
-		
-		
 	}
+	
+	
+	public ImageIcon setIcono (String url, JButton boton) {
+		
+		ImageIcon icono_origen = new  ImageIcon(getClass().getResource(url));
+		int alto = boton.getHeight();
+		int ancho = boton.getWidth();
+		
+		ImageIcon icono = new  ImageIcon(icono_origen.getImage().getScaledInstance(ancho, alto, Image.SCALE_DEFAULT));
+		
+		return icono;
+	}
+	
+	public ImageIcon setIconoPulsado (String url, JButton boton, int alt, int anc) {
+		
+		ImageIcon icono_origen = new  ImageIcon(getClass().getResource(url));
+		int alto = boton.getHeight()-alt;
+		int ancho = boton.getWidth()-anc;
+		
+		ImageIcon icono = new  ImageIcon(icono_origen.getImage().getScaledInstance(ancho, alto, Image.SCALE_DEFAULT));
+		
+		return icono;
+	}
+	
 }
