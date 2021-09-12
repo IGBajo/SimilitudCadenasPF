@@ -27,12 +27,12 @@ public class Programa {
 	private HashSet<String> Resultados;
 
 	
-	public Programa(DatosAplicacion _datos, JProgressBar _progressBar){
+	public Programa(DatosAplicacion _datos){
 		inicializar(_datos);
 		if (datos.getNormalizar()) {
 			normalizar_datos();
 		}
-		calcular(_progressBar);
+		calcular();
 	}
 	
 	private void inicializar(DatosAplicacion _datos) {
@@ -93,11 +93,11 @@ public class Programa {
 	}
 	
 	
-	private void calcular(JProgressBar _progressBar) {
+	private void calcular() {
 		
 		switch (datos.getTipoRegistros()) {
         case "T":
-            calcularTodosRESULTADOS(_progressBar);
+            calcularTodosRESULTADOS();
             //calcularTodos();
             break;   
         case "I":
@@ -145,8 +145,9 @@ public class Programa {
 	
 	private void calcularTodos() {
 		
-		//for (int i=0; i<datos.getTOrigen().getRowCount(); i++){
-		for (int i=0; i<1000; i++){
+		int total_registros=datos.getTOrigen().getRowCount();
+		
+		for (int i=0; i<total_registros; i++){
 			
 			if (!((datos.getSoloErroneos()) && !(personaConError(i)))) {
 				Registros.add(calcularUnRegistro(i));
@@ -154,23 +155,13 @@ public class Programa {
 		}
 	}
 	
-	private void calcularTodosRESULTADOS(JProgressBar _progressBar) {
+	private void calcularTodosRESULTADOS() {
 		
-		int proceso;
-		int proceso_anterior;
-		
+
 		int total_registros=datos.getTOrigen().getRowCount();
-		_progressBar.setValue(0);
-		proceso_anterior=0;
+
 		for (int i=0; i<total_registros; i++){
 
-			proceso=(int)((i*100)/total_registros);
-			if (proceso>proceso_anterior) {
-				_progressBar.setValue(proceso);
-				_progressBar.repaint();
-				proceso_anterior=proceso;
-			}
-			
 			if (!((datos.getSoloErroneos()) && !(personaConError(i)))) {
 				calcularUnRegistroRESULTADO(i);
 			}
@@ -180,9 +171,11 @@ public class Programa {
 	private void calcularSoloPrimeroSeleccionado() {
 		
 		int i=1;
+		int total_registros=datos.getTOrigen().getRowCount();
+		
 		AnalizarRegistro registro;
 		boolean encontrado=false;
-		while (i<datos.getTOrigen().getRowCount() && !encontrado) {
+		while (i<total_registros && !encontrado) {
 			if (datos.getTOrigen().getValueAt(i,0).toString()=="true") {
 				encontrado=true;
 			}else{
@@ -210,8 +203,9 @@ public class Programa {
 	private void calcularSeleccionados() {
 		
 		AnalizarRegistro registro;
+		int total_registros=datos.getTOrigen().getRowCount();
 		
-		for (int i=0; i<datos.getTOrigen().getRowCount(); i++){
+		for (int i=0; i<total_registros; i++){
 			if (datos.getTOrigen().getValueAt(i,0).toString()=="true") {
 				registro= new AnalizarRegistro();
 				registro=calcularUnRegistro(i);
@@ -225,9 +219,10 @@ public class Programa {
 	
 	private void calcularSeleccionadosRESULTADOS() {
 		
-
+		int total_registros=datos.getTOrigen().getRowCount();
 		
-		for (int i=0; i<datos.getTOrigen().getRowCount(); i++){
+		for (int i=0; i<total_registros; i++){
+			
 			if (datos.getTOrigen().getValueAt(i,0).toString()=="true") {
 				calcularUnRegistroRESULTADO(i);
 			}
