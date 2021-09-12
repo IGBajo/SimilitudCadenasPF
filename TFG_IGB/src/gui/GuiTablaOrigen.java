@@ -120,7 +120,7 @@ public class GuiTablaOrigen extends JInternalFrame implements InternalFrameListe
 
 		setTitle("Seleccion Tabla Origen");
 		setResizable(true);
-		setBounds(100, 100, 1400, 900);
+		setBounds(100, 100, 1600, 900);
 		getContentPane().setLayout(null);
 		
 		CargarComponentes();
@@ -132,7 +132,7 @@ public class GuiTablaOrigen extends JInternalFrame implements InternalFrameListe
 		// panel para agrupar Campos Principales
 		panel_cPrincipales = new JPanel();
 		panel_cPrincipales.setBorder(new TitledBorder(null, "Campos Principales", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panel_cPrincipales.setBounds(171, 456, 491, 181);
+		panel_cPrincipales.setBounds(172, 438, 491, 181);
 		getContentPane().add(panel_cPrincipales);
 		panel_cPrincipales.setLayout(null);
 		
@@ -180,7 +180,7 @@ public class GuiTablaOrigen extends JInternalFrame implements InternalFrameListe
 		panel_cSecundarios = new JPanel();
 		panel_cSecundarios.setLayout(null);
 		panel_cSecundarios.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "Campos Secundarios", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
-		panel_cSecundarios.setBounds(763, 456, 491, 181);
+		panel_cSecundarios.setBounds(762, 438, 491, 181);
 		getContentPane().add(panel_cSecundarios);
 		
 		eDni = new JLabel("DNI NIE");
@@ -232,7 +232,7 @@ public class GuiTablaOrigen extends JInternalFrame implements InternalFrameListe
 		
 		//Panel scroll que almacena la tabla
 		scrollPane = new JScrollPane();
-		scrollPane.setBounds(31, 58, 1369, 342);
+		scrollPane.setBounds(31, 58, 1500, 342);
 		getContentPane().add(scrollPane);
 		
 		
@@ -253,11 +253,11 @@ public class GuiTablaOrigen extends JInternalFrame implements InternalFrameListe
 		// boton buscar el archivo de comprobacion
 		btnCargarFicheroComprobacion = new JButton("Cargar Fichero Comprobación");
 		btnCargarFicheroComprobacion.addActionListener(this);
-		btnCargarFicheroComprobacion.setBounds(28, 736, 221, 29);
+		btnCargarFicheroComprobacion.setBounds(31, 654, 221, 29);
 		getContentPane().add(btnCargarFicheroComprobacion);
 		
 		scrollPane_TablaComprobacion = new JScrollPane();
-		scrollPane_TablaComprobacion.setBounds(323, 711, 339, 90);
+		scrollPane_TablaComprobacion.setBounds(291, 658, 372, 69);
 		getContentPane().add(scrollPane_TablaComprobacion);
 		
 		tableComprobacion = new JTable();

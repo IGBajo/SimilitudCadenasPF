@@ -38,7 +38,7 @@ public class RenderizarTabla extends DefaultTableCellRenderer
 	  
 	  if ("tTotales".equals(table.getName()) ){
 		  
-		  if (column>0) {
+		  if (column>1) {
 			  boolean mayor=true;
 			  boolean menor=true;
 			  double valor1=0.0;
@@ -80,10 +80,93 @@ public class RenderizarTabla extends DefaultTableCellRenderer
 			       }
 			  }
 		  }else {
-			  this.setFont(this.getFont().deriveFont(Font.BOLD));
+			  this.setForeground(Color.BLACK);
+			  if (column==0) {
+				  this.setFont(this.getFont().deriveFont(Font.BOLD));
+			  }
 		  }
 
 	  }
+	  
+	  
+	  if ("tCasuisticas_Aciertos".equals(table.getName()) ){
+		  if (column>1) {
+			  boolean mayor=true;
+			  boolean menor=true;
+			  double valor1=0.0;
+			  double valor2=0.0;
+
+			  valor1=Double.parseDouble(table.getValueAt(row,column).toString().replace(",", ".").replace("%", ""));
+
+			  for (int j=2; j<table.getColumnCount();j++) {
+				  
+				  valor2=Double.parseDouble(table.getValueAt(row,j).toString().replace(",", ".").replace("%", ""));
+				  
+				  if ( valor1 < valor2){
+					  mayor=false;
+				  }
+				  if (valor1 > valor2){
+					  menor=false;
+				  }
+			  }
+
+		      if (mayor){
+		    	  this.setForeground(Color.GREEN);
+		       } else {
+		     	  if (menor) {
+		               this.setForeground(Color.RED);
+		     	  }else {
+		               this.setForeground(Color.BLACK);
+		     	  }
+		       }
+		  }else {
+			  this.setForeground(Color.BLACK);
+			  if (column==0) {
+				  this.setFont(this.getFont().deriveFont(Font.BOLD));
+			  }
+		  }
+	  }
+	  
+	  
+	  if ("tCasuisticas_Tiempos".equals(table.getName()) ){
+		  if (column>1) {
+			  boolean mayor=true;
+			  boolean menor=true;
+			  double valor1=0.0;
+			  double valor2=0.0;
+
+			  valor1=Double.parseDouble(table.getValueAt(row,column).toString().replace(",", ".").replace("%", ""));
+
+			  for (int j=2; j<table.getColumnCount();j++) {
+				  
+				  valor2=Double.parseDouble(table.getValueAt(row,j).toString().replace(",", ".").replace("%", ""));
+				  
+				  if ( valor1 < valor2){
+					  mayor=false;
+				  }
+				  if (valor1 > valor2){
+					  menor=false;
+				  }
+			  }
+
+		      if (mayor){
+		    	  this.setForeground(Color.RED);
+		       } else {
+		     	  if (menor) {
+		               this.setForeground(Color.GREEN);
+		     	  }else {
+		               this.setForeground(Color.BLACK);
+		     	  }
+		       }
+
+		  }else {
+			  this.setForeground(Color.BLACK);
+			  if (column==0) {
+				  this.setFont(this.getFont().deriveFont(Font.BOLD));
+			  }
+		  }
+	  }
+	  
 	  
       return this;
    }

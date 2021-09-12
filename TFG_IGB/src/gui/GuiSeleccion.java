@@ -121,12 +121,12 @@ public class GuiSeleccion extends JInternalFrame implements InternalFrameListene
 			e.printStackTrace();
 		}
 		setResizable(true);
-		setBounds(100, 100, 1400, 900);
+		setBounds(100, 100, 1600, 900);
 		getContentPane().setLayout(null);
 		
 		panelRegistros = new JPanel();
 		panelRegistros.setBorder(new TitledBorder(null, "Registros a analizar", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panelRegistros.setBounds(325, 47, 483, 61);
+		panelRegistros.setBounds(540, 47, 483, 61);
 		getContentPane().add(panelRegistros);
 		panelRegistros.setLayout(null);
 		
@@ -148,7 +148,7 @@ public class GuiSeleccion extends JInternalFrame implements InternalFrameListene
 		
 		panelAlgoritmo = new JPanel();
 		panelAlgoritmo.setBorder(new TitledBorder(null, "Algoritmos", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panelAlgoritmo.setBounds(105, 220, 424, 243);
+		panelAlgoritmo.setBounds(326, 247, 424, 243);
 		getContentPane().add(panelAlgoritmo);
 		panelAlgoritmo.setLayout(null);
 		
@@ -213,7 +213,7 @@ public class GuiSeleccion extends JInternalFrame implements InternalFrameListene
 		panelCamposSecundarios = new JPanel();
 		panelCamposSecundarios.setLayout(null);
 		panelCamposSecundarios.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "A\u00F1adir Campos Secundarios", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
-		panelCamposSecundarios.setBounds(603, 347, 395, 116);
+		panelCamposSecundarios.setBounds(834, 374, 395, 116);
 		getContentPane().add(panelCamposSecundarios);
 		
 		chSecunDni = new JCheckBox("DNI NIE");
@@ -238,7 +238,7 @@ public class GuiSeleccion extends JInternalFrame implements InternalFrameListene
 		
 		panel_Condiciones = new JPanel();
 		panel_Condiciones.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "Condiciones a Analizar", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
-		panel_Condiciones.setBounds(603, 154, 395, 170);
+		panel_Condiciones.setBounds(834, 154, 395, 170);
 		getContentPane().add(panel_Condiciones);
 		panel_Condiciones.setLayout(null);
 		
@@ -266,7 +266,7 @@ public class GuiSeleccion extends JInternalFrame implements InternalFrameListene
 		panelPreselección = new JPanel();
 		panelPreselección.setLayout(null);
 		panelPreselección.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "Casu\u00EDsticas a Analizar", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
-		panelPreselección.setBounds(105, 154, 424, 61);
+		panelPreselección.setBounds(326, 154, 424, 61);
 		getContentPane().add(panelPreselección);
 		
 		chNormalizar = new JCheckBox("Normalizar");

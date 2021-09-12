@@ -19,6 +19,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JOptionPane;
 import javax.swing.JDesktopPane;
 import java.awt.CardLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.ActionListener;
 import java.beans.PropertyVetoException;
@@ -31,6 +32,7 @@ import javax.swing.JProgressBar;
 import javax.swing.ImageIcon;
 import javax.swing.SwingConstants;
 import java.awt.Window.Type;
+import java.awt.Font;
 
 public class VentanaMenu extends JFrame implements ActionListener {
 
@@ -55,7 +57,7 @@ public class VentanaMenu extends JFrame implements ActionListener {
 	private HashSet<AnalizarRegistro> registros;
 	private HashSet<String> resultados;
 	private JButton btnPlay;
-	private JProgressBar progressBar;
+	
 	
 	// si queremos cargar los paneles internos y volverlos a visualizar para no borrar el contenido
 
@@ -81,6 +83,7 @@ public class VentanaMenu extends JFrame implements ActionListener {
 	 * Create the frame.
 	 */
 	public VentanaMenu() {
+		setFont(new Font("Dialog", Font.BOLD, 12));
 		setTitle("TFG Iván García Bajo");
 		
 		
@@ -95,25 +98,26 @@ public class VentanaMenu extends JFrame implements ActionListener {
 		
 		
 		JMenuBar menuBar = new JMenuBar();
-		setJMenuBar(menuBar);
 		
+		setJMenuBar(menuBar);
 		
 		btnCargarOrigenDatos = new JButton();
 		btnCargarOrigenDatos.addActionListener(this);
-
+		
 		btnCargarOrigenDatos.setBounds(btnCargarOrigenDatos.getX(), btnCargarOrigenDatos.getY(), 50, 50);
+		
 		
 		btnCargarOrigenDatos.setIcon(setIcono("/imagenes/bbdd_peq_azul.png", btnCargarOrigenDatos));
 		btnCargarOrigenDatos.setRolloverIcon(setIcono("/imagenes/bbdd_peq_azul_osc.png", btnCargarOrigenDatos));
 		btnCargarOrigenDatos.setPressedIcon(setIconoPulsado("/imagenes/bbdd_peq_azul_osc.png", btnCargarOrigenDatos,2,2));
-		
-		
+		btnCargarOrigenDatos.setToolTipText("Datos a Analizar");
 		
 		menuBar.add(btnCargarOrigenDatos);
 		
 
 		
-		btnSeleccion = new JButton();
+		btnSeleccion = new JButton("");
+		btnSeleccion.setToolTipText("Opciones");
 		btnSeleccion.addActionListener(this);
 
 		btnSeleccion.setBounds(btnSeleccion.getX(), btnSeleccion.getY(), 50, 50);
@@ -128,19 +132,17 @@ public class VentanaMenu extends JFrame implements ActionListener {
 
 		
 		btnPlay = new JButton();
+		btnPlay.setToolTipText("Ejecutar");
 		btnPlay.addActionListener(this);
 
 		btnPlay.setBounds(btnPlay.getX(), btnPlay.getY(), 50, 50);
 		
-		btnPlay.setIcon(setIcono("/imagenes/Play_peq_azul.png", btnPlay));
-		btnPlay.setRolloverIcon(setIcono("/imagenes/Play_peq_azul_osc.png", btnPlay));
-		btnPlay.setPressedIcon(setIconoPulsado("/imagenes/Play_peq_azul_osc.png", btnPlay,2,2));
+		btnPlay.setIcon(setIcono("/imagenes/play_rojo_peq.png", btnPlay));
+		btnPlay.setRolloverIcon(setIcono("/imagenes/play_rojo_peq_osc.png", btnPlay));
+		btnPlay.setPressedIcon(setIconoPulsado("/imagenes/play_rojo_peq_osc.png", btnPlay,2,2));
 		
 		menuBar.add(btnPlay);
 		
-		progressBar = new JProgressBar(0, 100);
-		menuBar.add(progressBar);
-
 		btnResultados = new JButton();
 		btnResultados.addActionListener(this);
 
@@ -171,8 +173,12 @@ public class VentanaMenu extends JFrame implements ActionListener {
 		setContentPane(contentPane);
 		contentPane.setLayout(new CardLayout(0, 0));
 		
+		
 		escritorio = new JDesktopPane();
+		escritorio.setBackground(new Color(23, 156, 209));
 		contentPane.add(escritorio, "escritorio");
+		
+		
 		
 		setVisible(true);
 		
@@ -184,7 +190,7 @@ public class VentanaMenu extends JFrame implements ActionListener {
 	      Dimension pantalla = Toolkit.getDefaultToolkit().getScreenSize();
 	      int height = pantalla.height;
 	      int width = pantalla.width;
-	      setSize(width*2/3, height*2/3);		
+	      setSize(1600, 900);		
 
 	      setLocationRelativeTo(null);		
 	      setVisible(true);
@@ -320,11 +326,7 @@ public class VentanaMenu extends JFrame implements ActionListener {
 			datos.setNormalizar(sel.getNormalizar());
 			datos.setSoloErroneos(sel.getSoloErroneos());
 			
-			progressBar.setValue(0);
-			progressBar.repaint();
-			
-			
-			Programa prog=new Programa(datos, progressBar);
+			Programa prog=new Programa(datos);
 			
 			//devuelvo los datos 
 			datos.setTResultados(prog.getDatos().getTResultados()); 

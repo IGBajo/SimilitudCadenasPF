@@ -21,6 +21,7 @@ import util.RenderizarTabla;
 import util.exportarExcel;
 
 import javax.swing.event.InternalFrameEvent;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -30,6 +31,11 @@ import javax.swing.JScrollPane;
 import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
 import javax.swing.JLabel;
+import java.awt.Font;
+import java.awt.Image;
+import java.awt.Color;
+import javax.swing.border.LineBorder;
+import java.awt.Dimension;
 
 public class GuiAnalizar extends JInternalFrame implements InternalFrameListener, ActionListener {
 
@@ -92,16 +98,16 @@ public class GuiAnalizar extends JInternalFrame implements InternalFrameListener
 			e.printStackTrace();
 		}
 		setResizable(true);
-		setBounds(100, 100, 1586, 900);
+		setBounds(100, 100, 1600, 900);
 		getContentPane().setLayout(null);
 		
 		scrollPaneTCasuisticas_Aciertos = new JScrollPane();
-		scrollPaneTCasuisticas_Aciertos.setBounds(55, 94, 1488, 205);
+		scrollPaneTCasuisticas_Aciertos.setBounds(34, 88, 1500, 150);
 		getContentPane().add(scrollPaneTCasuisticas_Aciertos);
 		
 		tCasuisticas_Aciertos = new JTable();
 		scrollPaneTCasuisticas_Aciertos.setViewportView(tCasuisticas_Aciertos);
-		tCasuisticas_Aciertos.setName("tListado");
+		tCasuisticas_Aciertos.setName("tCasuisticas_Aciertos");
 		
 		tCasuisticas_Aciertos.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		tCasuisticas_Aciertos.setCellSelectionEnabled(true);
@@ -109,7 +115,7 @@ public class GuiAnalizar extends JInternalFrame implements InternalFrameListener
 		tCasuisticas_Aciertos.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 		
 		scrollPaneTCasuisticas_Tiempos = new JScrollPane();
-		scrollPaneTCasuisticas_Tiempos.setBounds(55, 360, 1488, 205);
+		scrollPaneTCasuisticas_Tiempos.setBounds(34, 313, 1500, 150);
 		getContentPane().add(scrollPaneTCasuisticas_Tiempos);
 		
 		tCasuisticas_Tiempos = new JTable();
@@ -122,7 +128,8 @@ public class GuiAnalizar extends JInternalFrame implements InternalFrameListener
 		tCasuisticas_Tiempos.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 		
 		scrollPaneTTotales = new JScrollPane();
-		scrollPaneTTotales.setBounds(55, 656, 1488, 84);
+		scrollPaneTTotales.setBackground(new Color(23, 156, 209));
+		scrollPaneTTotales.setBounds(34, 605, 1500, 60);
 		getContentPane().add(scrollPaneTTotales);
 		
 		tTotales = new JTable();
@@ -135,25 +142,63 @@ public class GuiAnalizar extends JInternalFrame implements InternalFrameListener
 		tTotales.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 		
 		eTipo = new JLabel("TIEMPOS");
-		eTipo.setBounds(577, 332, 171, 16);
+		eTipo.setForeground(new Color(23, 156, 209));
+		eTipo.setFont(new Font("Lucida Grande", Font.BOLD, 19));
+		eTipo.setBounds(736, 278, 92, 23);
 		getContentPane().add(eTipo);
 		
 		eMetrica = new JLabel("PORCENTAJE DE ACIERTOS");
-		eMetrica.setBounds(563, 54, 397, 28);
+		eMetrica.setForeground(new Color(23, 156, 209));
+		eMetrica.setFont(new Font("Lucida Grande", Font.BOLD, 19));
+		eMetrica.setBounds(645, 48, 263, 28);
 		getContentPane().add(eMetrica);
 		
 		
 		lblTotales = new JLabel("TOTALES");
-		lblTotales.setBounds(563, 616, 273, 28);
+		lblTotales.setBackground(Color.WHITE);
+		lblTotales.setForeground(new Color(23, 156, 209));
+		lblTotales.setFont(new Font("Lucida Grande", Font.BOLD, 24));
+		lblTotales.setBounds(729, 565, 114, 28);
 		getContentPane().add(lblTotales);
 		
-		btnBotonExportar = new JButton("Exportar a Excel");
+		btnBotonExportar = new JButton("");
+
 		btnBotonExportar.addActionListener(this);
-		btnBotonExportar.setBounds(1398, 303, 145, 29);
+		btnBotonExportar.setBounds(1484, 701, 50, 50);
+		
+		btnBotonExportar.setIcon(setIcono("/imagenes/descargar_peq_azul.jpg", btnBotonExportar));
+		btnBotonExportar.setRolloverIcon(setIcono("/imagenes/descargar_peq_azul_osc.jpg", btnBotonExportar));
+		btnBotonExportar.setPressedIcon(setIconoPulsado("/imagenes/descargar_peq_azul_osc.jpg", btnBotonExportar,2,2));
+		
+		
+		
 		getContentPane().add(btnBotonExportar);
 		
 		inicializaCombos();
 
+
+	}
+
+	public ImageIcon setIcono (String url, JButton boton) {
+		
+		ImageIcon icono_origen = new  ImageIcon(getClass().getResource(url));
+		int alto = boton.getHeight();
+		int ancho = boton.getWidth();
+		
+		ImageIcon icono = new  ImageIcon(icono_origen.getImage().getScaledInstance(ancho, alto, Image.SCALE_DEFAULT));
+		
+		return icono;
+	}
+	
+	public ImageIcon setIconoPulsado (String url, JButton boton, int alt, int anc) {
+		
+		ImageIcon icono_origen = new  ImageIcon(getClass().getResource(url));
+		int alto = boton.getHeight()-alt;
+		int ancho = boton.getWidth()-anc;
+		
+		ImageIcon icono = new  ImageIcon(icono_origen.getImage().getScaledInstance(ancho, alto, Image.SCALE_DEFAULT));
+		
+		return icono;
 	}
 
 
@@ -413,7 +458,7 @@ public class GuiAnalizar extends JInternalFrame implements InternalFrameListener
 	  	Object[] obj_tiempos = new Object[datos.getListaAlgoritmos().size()+2];
 	  	Object[] obj_aciertos = new Object[datos.getListaAlgoritmos().size()+2];
 	  	
-	  	obj_tiempos[0] = "TIEMPOS (seg)";
+	  	obj_tiempos[0] = "TIEMPO (seg)";
 	  	obj_aciertos[0] = "ACIERTO";
 	  	
 	  	cuenta=resultados.size();

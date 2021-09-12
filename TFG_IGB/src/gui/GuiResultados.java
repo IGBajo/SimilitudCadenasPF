@@ -46,10 +46,6 @@ public class GuiResultados extends JInternalFrame implements InternalFrameListen
 	private static DatosAplicacion datos;
 	private static HashSet<AnalizarRegistro> registros;
 	private static HashSet<String> resultados;
-	private JComboBox comboTipo;
-	private JComboBox comboMetrica;
-	private JLabel eTipo;
-	private JLabel eMetrica;
 	private JButton btnExportarResultados;
 	private JScrollPane scrollPaneTCasos;
 	private JTable tCasos;
@@ -96,12 +92,12 @@ public class GuiResultados extends JInternalFrame implements InternalFrameListen
 			e.printStackTrace();
 		}
 		setResizable(true);
-		setBounds(100, 100, 1660, 900);
+		setBounds(100, 100, 1600, 900);
 		getContentPane().setLayout(null);
 		
 		
 		scrollPaneTCasos = new JScrollPane();
-		scrollPaneTCasos.setBounds(55, 101, 1560, 678);
+		scrollPaneTCasos.setBounds(34, 35, 1500, 625);
 		getContentPane().add(scrollPaneTCasos);
 		
 		tCasos = new JTable();
@@ -113,22 +109,6 @@ public class GuiResultados extends JInternalFrame implements InternalFrameListen
 		tCasos.setColumnSelectionAllowed(true);
 		tCasos.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 		
-		comboTipo = new JComboBox();
-		comboTipo.setBounds(373, 34, 223, 27);
-		getContentPane().add(comboTipo);
-		
-		comboMetrica = new JComboBox();
-		comboMetrica.setBounds(742, 34, 256, 27);
-		getContentPane().add(comboMetrica);
-		
-		eTipo = new JLabel("Tipo");
-		eTipo.setBounds(250, 38, 83, 16);
-		getContentPane().add(eTipo);
-		
-		eMetrica = new JLabel("Métrica");
-		eMetrica.setBounds(688, 38, 70, 16);
-		getContentPane().add(eMetrica);
-		
 		btnExportarResultados = new JButton("Exportar Resultados");
 		btnExportarResultados.setOpaque(false);
 		btnExportarResultados.setContentAreaFilled(false);
@@ -137,7 +117,7 @@ public class GuiResultados extends JInternalFrame implements InternalFrameListen
 		//tnExportarResultados.setIcon(new ImageIcon(GuiResultados.class.getResource("/imagenes/sobresalir.png")));
 
 		btnExportarResultados.addActionListener(this);
-		btnExportarResultados.setBounds(1576, 791, 50, 50);
+		btnExportarResultados.setBounds(1484, 672, 50, 50);
 		
 		btnExportarResultados.setIcon(setIcono("/imagenes/descargar_peq_azul.jpg", btnExportarResultados));
 		btnExportarResultados.setRolloverIcon(setIcono("/imagenes/descargar_peq_azul_osc.jpg", btnExportarResultados));
@@ -173,14 +153,6 @@ public class GuiResultados extends JInternalFrame implements InternalFrameListen
 
 
 	private void inicializaCombos() {
-
-		comboTipo.addItem("Totales");
-		comboTipo.addItem("Tipo de registro");
-		comboTipo.addItem("Individual");
-			
-		comboMetrica.addItem("% Aciertos");
-		comboMetrica.addItem("Tiempos");
-		comboMetrica.addItem("Similitud");
 		
 	
 	}
